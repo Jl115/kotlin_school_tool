@@ -54,7 +54,7 @@ import screens.customComponents.navigationHeaderBar
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Modul Noten",
+                text = "Modul Notenn",
                 style = TextStyle(
                     fontSize = 56.sp,
                     lineHeight = 84.sp,
