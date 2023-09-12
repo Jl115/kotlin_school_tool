@@ -10,12 +10,10 @@ enum class Screen(
     LoginScreen(
         label = "Login",
     ),
-    SettingsScreen(
+    RegisterScreen(
         label = "Settings",
     ),
-    ProfileScreens(
-        label = "User Profile",
-    );
+
 
 
 

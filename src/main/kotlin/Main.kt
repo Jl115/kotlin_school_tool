@@ -9,6 +9,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPosition
@@ -30,13 +31,11 @@ fun App() {
 
     MaterialTheme {
         Surface(
-            modifier = Modifier.background(color = MaterialTheme.colors.background)
+            modifier = Modifier.background(Color(0xFFFFF0ED))
         ) {
             Box(
                 modifier = Modifier.fillMaxSize()
             ) {
-
-
                 Box(
                     modifier = Modifier.fillMaxHeight()
                 ) {
@@ -51,6 +50,7 @@ fun main() = application {
     Window(
         onCloseRequest = ::exitApplication,
         resizable = true,
+        title = "Computer Schule Bern Noten",
         state = WindowState(
             height = 1080.dp,
             width = 1920.dp,
