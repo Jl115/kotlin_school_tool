@@ -5,31 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb25a74b-5df2-4730-a526-a0bb9b7f3b53" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.run/desktop.run.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/managers/screen.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/navcontroller/CustomNavigationHost.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/navcontroller/NavController.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/navcontroller/NavigationHost.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/screens/HomeScreen.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/screens/LoginScreen.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/screens/NotificationScreen.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/screens/ProfileScreen.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/screens/SettingScreen.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/screens/customComponents/navigationHeaderBar.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/managers/screen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/managers/screen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/navcontroller/CustomNavigationHost.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/navcontroller/CustomNavigationHost.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/screens/HomeScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/screens/HomeScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/screens/NotificationScreen.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/screens/ProfileScreen.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/screens/RegisterScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/screens/RegisterScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/screens/SettingScreen.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/screens/customComponents/NavigationHeaderBar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/screens/customComponents/NavigationHeaderBar.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/screens/customComponents/addExcusedLessons.kt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +51,7 @@
       <list>
         <option value="Kotlin Enum" />
         <option value="Kotlin Class" />
+        <option value="Kotlin File" />
       </list>
     </option>
   </component>
@@ -97,10 +88,17 @@
       <recent name="$PROJECT_DIR$/src/main/kotlin/screens" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.MainKt">
-    <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Kotlin.MainKt (1)">
+    <configuration name="MainKt (1)" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MainKt" />
       <module name="navigationTest.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MainKt" />
+      <shortenClasspath name="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -114,6 +112,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.MainKt (1)" />
         <item itemvalue="Kotlin.MainKt" />
         <item itemvalue="Kotlin script (Beta).build.gradle.kts" />
       </list>
@@ -130,6 +129,9 @@
       <workItem from="1694150780503" duration="3118000" />
       <workItem from="1694158577063" duration="7742000" />
       <workItem from="1694192701325" duration="493000" />
+      <workItem from="1694638676676" duration="166000" />
+      <workItem from="1694638845466" duration="1021000" />
+      <workItem from="1694667409524" duration="1563000" />
     </task>
     <servers />
   </component>

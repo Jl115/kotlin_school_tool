@@ -28,10 +28,10 @@ import screens.customComponents.languageButton
 import screens.customComponents.navigationHeaderBar
 
 
-// Composable function for previewing HomeScreen layout in Android Studio
+// Composable function for previewing homeScreen layout in Android Studio
 @Preview
 @Composable
-fun HomeScreen(
+fun homeScreen(
     navController: NavController // Navigation controller to handle navigation actions
 ) {
     // Remember and store whether the dropdown is expanded

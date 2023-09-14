@@ -13,9 +13,4 @@ enum class Screen(
     RegisterScreen(
         label = "Settings",
     ),
-
-
-
-
-
 }

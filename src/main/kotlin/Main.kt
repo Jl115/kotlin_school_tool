@@ -24,7 +24,7 @@ fun App() {
 
     val screens = Screen.values().toList()
     //changing the first Screen
-    val navController by rememberNavController(Screen.HomeScreen.name)
+    val navController by rememberNavController(Screen.LoginScreen.name)
     val currentScreen by remember {
         navController.currentScreen
     }
@@ -55,12 +55,7 @@ fun main() = application {
             height = 1080.dp,
             width = 1920.dp,
             position = WindowPosition(Alignment.Center)
-    )) {
+        )) {
         App()
     }
 }
-
-
-
-
-

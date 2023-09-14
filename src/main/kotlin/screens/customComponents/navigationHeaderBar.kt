@@ -25,7 +25,7 @@ import navcontroller.NavController
 @Composable
 fun navigationHeaderBar(
     isLoginScreen: Boolean,
-
+    isHomeScreen: Boolean,
 ) {
     Box(
         modifier = Modifier

@@ -20,8 +20,6 @@ dependencies {
     // (in a separate module for demo project and in testMain).
     // With compose.desktop.common you will also lose @Preview functionality
     implementation(compose.desktop.currentOs)
-    // https://mvnrepository.com/artifact/androidx.compose.material/material-icons-extended
-    implementation("androidx.compose.material:material-icons-extended:1.0.0-beta06")
 }
 
 compose.desktop {
