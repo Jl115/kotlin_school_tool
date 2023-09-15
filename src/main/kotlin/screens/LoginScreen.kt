@@ -1,14 +1,11 @@
+// Required imports for the functionalities used in the Composable
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.*
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -21,27 +18,28 @@ import navcontroller.NavController
 import screens.customComponents.languageButton
 import screens.customComponents.navigationHeaderBar
 
+/**
+ * The LoginScreen Composable function.
+ * It displays the login interface with email and password fields, a login button, language button, and register option.
+ * @param navController The navigation controller to handle screen transitions.
+ */
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun LoginScreen(navController: NavController) {
+fun loginScreen(navController: NavController) {
+    // State variables to hold email and password input
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var showDialog by remember { mutableStateOf(false) }
 
-    val emailFocusRequester = remember { FocusRequester() }
-    val passwordFocusRequester = remember { FocusRequester() }
-    val languageFocusRequester = remember { FocusRequester() }
-    val registerFocusRequester = remember { FocusRequester() }
 
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(Color(0xFFFFF0ED))
-    ) {
 
+    Box(modifier = Modifier.fillMaxSize().background(Color(0xFFFFF0ED))) {
         Column(
             modifier = Modifier.fillMaxSize().padding(16.dp),
             verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
+            // Header bar with navigation controls
             Row(
                 modifier = Modifier.fillMaxWidth().padding(16.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -50,18 +48,17 @@ fun LoginScreen(navController: NavController) {
                 navigationHeaderBar(true, isHomeScreen = false)
             }
 
+            // Login form section
             Box(modifier = Modifier.width(700.dp)) {
                 Column(
                     modifier = Modifier.fillMaxWidth(),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-
+                    // Login title
                     Text(
                         text = "Login",
-                        modifier = Modifier
-                            .width(115.dp)
-                            .height(60.dp),
+                        modifier = Modifier.width(115.dp).height(60.dp),
                         style = TextStyle(
                             fontSize = 40.sp,
                             lineHeight = 60.sp,
@@ -72,6 +69,7 @@ fun LoginScreen(navController: NavController) {
 
                     Spacer(modifier = Modifier.height(50.dp))
 
+                    // Email input field with label
                     Text(
                         text = "School E-mail",
                         modifier = Modifier.align(Alignment.Start),
@@ -97,17 +95,12 @@ fun LoginScreen(navController: NavController) {
                                 )
                             )
                         },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .focusRequester(emailFocusRequester)
-                            .focusOrder(emailFocusRequester) {
-                                next = passwordFocusRequester
-                                previous = registerFocusRequester
-                            }
+                        modifier = Modifier.fillMaxWidth()
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
 
+                    // Password input field with label
                     Text(
                         text = "Password",
                         modifier = Modifier.align(Alignment.Start),
@@ -133,19 +126,14 @@ fun LoginScreen(navController: NavController) {
                             )
                         },
                         visualTransformation = PasswordVisualTransformation(),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .focusRequester(passwordFocusRequester)
-                            .focusOrder(passwordFocusRequester) {
-                                next = languageFocusRequester
-                                previous = emailFocusRequester
-                            }
+                        modifier = Modifier.fillMaxWidth()
                     )
                 }
             }
 
             Spacer(modifier = Modifier.height(100.dp))
 
+            // Buttons section at the bottom: Login and Language
             Row(
                 modifier = Modifier.fillMaxWidth().padding(bottom = 150.dp, end = 20.dp, start = 20.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -153,15 +141,11 @@ fun LoginScreen(navController: NavController) {
             ) {
                 Spacer(modifier = Modifier.width(80.dp))
 
+                // Login button
                 Button(
                     modifier = Modifier
                         .width(700.dp)
-                        .height(80.dp)
-                        .focusRequester(languageFocusRequester)
-                        .focusOrder(languageFocusRequester) {
-                            next = registerFocusRequester
-                            previous = passwordFocusRequester
-                        },
+                        .height(80.dp),
                     colors = ButtonDefaults.buttonColors(Color(0xFFE50010)),
                     onClick = {
                         if (isValidLogin(email, password)) {
@@ -183,18 +167,16 @@ fun LoginScreen(navController: NavController) {
                     )
                 }
 
+                // Language change button
                 languageButton()
             }
+
+            // Register option with clickable underline effect
             Text(
                 text = "Register",
                 textDecoration = TextDecoration.Underline,
                 modifier = Modifier
-                    .clickable { navController.navigate(Screen.RegisterScreen.name) }
-                    .focusRequester(registerFocusRequester)
-                    .focusOrder(registerFocusRequester) {
-                        next = emailFocusRequester
-                        previous = languageFocusRequester
-                    },
+                    .clickable { navController.navigate(Screen.RegisterScreen.name) },
                 style = TextStyle(
                     fontSize = 18.sp,
                     lineHeight = 18.sp,
@@ -204,8 +186,34 @@ fun LoginScreen(navController: NavController) {
             )
         }
     }
+    if (showDialog) {
+        AlertDialog(
+            onDismissRequest = {
+                showDialog = false
+            },
+            title = {
+                Text(text = "Not a valid User")
+            },
+            text = {
+                Text("Please just use the the Dummy Login test.test@ict.csbe.ch and test")
+            },
+            confirmButton = {
+                Button(onClick = {
+                    showDialog = false
+                }) {
+                    Text("OK")
+                }
+            }
+        )
+    }
 }
 
+/**
+ * Validate the user's email and password.
+ * @param email The user's email.
+ * @param password The user's password.
+ * @return True if the login credentials are valid, false otherwise.
+ */
 fun isValidLogin(email: String, password: String): Boolean {
     return email.endsWith("ict.csbe.ch") && password == "test" && email == "test.test@ict.csbe.ch"
 }

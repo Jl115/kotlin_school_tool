@@ -22,14 +22,13 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.rememberDialogState
 import navcontroller.NavController
-import screens.customComponents.Table
+import screens.customComponents.table
 import screens.customComponents.addNewGradeDialog
 import screens.customComponents.languageButton
 import screens.customComponents.navigationHeaderBar
 
 
-// Composable function for previewing homeScreen layout in Android Studio
-@Preview
+
 @Composable
 fun homeScreen(
     navController: NavController // Navigation controller to handle navigation actions
@@ -58,13 +57,13 @@ fun homeScreen(
             listOf("Module, 322", "Note: 6.0"),
         )
     }
+    // Function to add a new grade to the list without duplicating
     fun addGrade(module: String, note: String) {
         val checkList = listOf("Module: $module", "Grade: $note")
         if (!noteData.contains(checkList)) {
             noteData.add(checkList)
         }
     }
-
 
     // Dummy data for semester grade information
     val semesterGradeData = listOf(
@@ -163,7 +162,7 @@ fun homeScreen(
                 }
             }
             // Invoke Table composable function to display note data in a table format
-            Table(noteData)
+            table(noteData)
             // Box to hold text with custom padding
             Box(
                 modifier = Modifier
@@ -182,7 +181,7 @@ fun homeScreen(
                 )
             }
             // Invoke Table composable function to display semester grade data in a table format
-            Table(semesterGradeData)
+            table(semesterGradeData)
 
             // Row to hold the language button with alignment to the end
             Row(
@@ -193,6 +192,7 @@ fun homeScreen(
                     Row (modifier = Modifier
                         .fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceAround){
+                        // Box to add a new module grade
                         Box(modifier = Modifier
                             .width(300.dp)
                             .height(40.dp)
@@ -211,6 +211,7 @@ fun homeScreen(
                                 Icon(Icons.Outlined.ArrowDropDown, contentDescription = "Add Module Grade")
                             }
                         }
+                        // Box to add excused lessons
                         Box(modifier = Modifier
                             .width(300.dp)
                             .height(40.dp)
@@ -229,6 +230,7 @@ fun homeScreen(
                             }
                         }
                     }
+                    // Add New Grade Dialog
                     if (expandedAddGrade.value) {
                         addNewGradeDialog(
                             onClose = { expandedAddGrade.value = false },
@@ -236,6 +238,7 @@ fun homeScreen(
                             isVisibleDialog = isDialogVisible
                         )
                     }
+                    // Dialog for excused and unexcused lessons
                     Dialog(
                         state = windowState,
                         resizable = false,
@@ -251,6 +254,7 @@ fun homeScreen(
                             horizontalAlignment = Alignment.CenterHorizontally,
                             verticalArrangement = Arrangement.Top
                         ) {
+                            // Title for the dialog
                             Text(
                                 text = "Add Excused | Unexcused Lesson",
                                 style = TextStyle(
@@ -262,11 +266,13 @@ fun homeScreen(
                                 )
                             )
                             Spacer(modifier = Modifier.height(20.dp))
+                            // Display current excused and unexcused lessons
                             Column(modifier = Modifier
                                 .fillMaxWidth(),
                                 verticalArrangement = Arrangement.Center,
                                 horizontalAlignment = Alignment.CenterHorizontally
                             ){
+                                // Display excused lesions
                                 Box (modifier = Modifier. size(300.dp, 50.dp)){
                                     Text(
                                         modifier = Modifier.fillMaxWidth(),
@@ -280,6 +286,7 @@ fun homeScreen(
                                         ))
                                 }
                                 Spacer(modifier = Modifier.height(20.dp))
+                                // Display unexcused lesions
                                 Box (modifier = Modifier. size(300.dp, 50.dp)) {
                                     Text(
                                         modifier = Modifier.fillMaxWidth(),
@@ -297,7 +304,9 @@ fun homeScreen(
 
                             Spacer(modifier = Modifier.height(20.dp))
 
+                            // Sliders to adjust the excused and unexcused lesions
                             Row ( verticalAlignment = Alignment.CenterVertically){
+                                // Excused lesions slider with label
                                 Box (modifier = Modifier.padding(end = 30.dp)) {
                                     Text(
                                         text = "Excused Lesions Slider",
@@ -321,6 +330,7 @@ fun homeScreen(
                             }
 
                             Spacer(modifier = Modifier.height(20.dp))
+                            // Unexcused lesions slider with label
                             Row ( verticalAlignment = Alignment.CenterVertically){
                                 Box (modifier = Modifier.padding(end = 30.dp)) {
                                     Text(
@@ -346,6 +356,7 @@ fun homeScreen(
 
                             Spacer(modifier = Modifier.height(15.dp))
 
+                            // Button to increase the time
                             Box(
                                 modifier = Modifier
                                     .height(40.dp)
@@ -370,6 +381,7 @@ fun homeScreen(
 
                             Spacer(modifier = Modifier.height(30.dp))
 
+                            // Button to decrease the time
                             Box(
                                 modifier = Modifier
                                     .height(40.dp)
@@ -386,9 +398,6 @@ fun homeScreen(
                                         }
                                         dialogExcusedLesionVisible.value = false
                                     }
-
-
-
                             ){
                                 Row(
                                     modifier = Modifier
@@ -404,21 +413,9 @@ fun homeScreen(
                         }
                     }
                 }
+                // Language button to switch language
                 languageButton()
             }
         }
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-

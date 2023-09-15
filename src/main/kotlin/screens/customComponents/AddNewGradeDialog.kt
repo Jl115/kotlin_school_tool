@@ -20,6 +20,13 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.rememberDialogState
 import kotlin.math.round
 
+/**
+ * A Composable function to display a dialog for adding a new grade to a module.
+ *
+ * @param onClose A lambda function to be invoked when the dialog is closed without submitting.
+ * @param onGradeAdded A lambda function to be invoked when a new grade is added, receiving the module name and grade as parameters.
+ * @param isVisibleDialog A boolean to control the visibility of the dialog.
+ */
 @Composable
 fun addNewGradeDialog(onClose: () -> Unit, onGradeAdded: (String, String) -> Unit, isVisibleDialog: Boolean) {
     // Remembering the state of the dialog with default width and height
@@ -37,9 +44,9 @@ fun addNewGradeDialog(onClose: () -> Unit, onGradeAdded: (String, String) -> Uni
         visible = isVisibleDialog,
         title = "My Custom Sized Dialog"
     ) {
-        Box(modifier = Modifier
-            .fillMaxSize()
-        ) {
+        // Main container to hold all the elements of the dialog
+        Box(modifier = Modifier.fillMaxSize()) {
+            // Column to arrange the elements vertically with specified padding and alignment
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -49,7 +56,7 @@ fun addNewGradeDialog(onClose: () -> Unit, onGradeAdded: (String, String) -> Uni
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Top
             ) {
-                // Title text for the dialog
+                // Title text for the dialog with specified style properties
                 Text(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -62,10 +69,12 @@ fun addNewGradeDialog(onClose: () -> Unit, onGradeAdded: (String, String) -> Uni
                         color = Color(0xFF1E1E1E),
                     )
                 )
-                // Container for the module selection field and dropdown menu
+                // The following sections (module selection and grade input) are similar in structure:
+                // - A label to indicate what the section is for
+                // - A container to hold the input field and associated elements (like dropdown menu or slider)
+                // - Styling elements like background color, padding, and text alignment are applied to enhance the UI
                 Box(modifier = Modifier.fillMaxWidth().padding(start = 30.dp, end = 30.dp)) {
                     Column(modifier = Modifier.fillMaxWidth()) {
-                        // Label for the module selection field
                         Text(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -118,7 +127,7 @@ fun addNewGradeDialog(onClose: () -> Unit, onGradeAdded: (String, String) -> Uni
                         }
                     }
                 }
-                // Dropdown menu to select a module from a predefined list
+                // Dropdown menu for module selection with a list of predefined module names
                 DropdownMenu(
                     modifier = Modifier
                         .verticalScroll(rememberScrollState())
@@ -128,8 +137,7 @@ fun addNewGradeDialog(onClose: () -> Unit, onGradeAdded: (String, String) -> Uni
                     offset = DpOffset(x = 220.dp, y = 280.dp)  // Adjust the offset to position the menu correctly
                 ) {
                     // List of available modules to choose from
-                    val reducedItList =
-                        listOf("123", "122", "162", "164", "198", "226", "123", "122", "162", "164", "198", "226")
+                    val reducedItList = listOf("123", "122", "162", "164", "198", "226", "123", "122", "162", "164", "198", "226")
                     for (i in reducedItList.indices) {
                         // Creating menu items for each module in the list
                         DropdownMenuItem(onClick = {

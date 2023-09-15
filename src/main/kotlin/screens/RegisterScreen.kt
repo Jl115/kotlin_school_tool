@@ -10,8 +10,6 @@ import androidx.compose.material.icons.outlined.ArrowDropDown
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.focusOrder
-import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -21,21 +19,30 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import navcontroller.NavController
 
+/**
+ * The RegisterScreen Composable function.
+ * It displays the registration interface with several input fields and dropdown menus to gather user details for registration.
+ *
+ * @param navController The navigation controller to handle screen transitions.
+ */
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun RegisterScreen(
+fun registerScreen(
     navController: NavController
 ) {
+    // State variables to hold user inputs during registration
     var expanded by remember { mutableStateOf(false) }
     var expandedApreanci by remember { mutableStateOf(false) }
-    var selectedGender by remember { mutableStateOf("Semester 1") }
+    var selectedGender by remember { mutableStateOf("") }
     var selectedApreanci by remember { mutableStateOf("Infrormatiker 3 Jahre") }
     var firstName by remember { mutableStateOf("") }
-    var lastName by remember { mutableStateOf("" ) }
-    var gender by remember { mutableStateOf("" ) }
+    var lastName by remember { mutableStateOf("") }
     var birthDate by remember { mutableStateOf("") }
-    var study by remember { mutableStateOf("") }
-    var userName = firstName + lastName
-    var password by remember { mutableStateOf("" ) }
+    var showDialog by remember { mutableStateOf(false) }
+
+    // Constructing username using first name and last name
+    val userName = "$firstName.$lastName"
+    var password by remember { mutableStateOf("") }
 
     Box(modifier = Modifier.fillMaxSize().background(Color(0xFFFFF0ED))) {
         Column(
@@ -45,6 +52,7 @@ fun RegisterScreen(
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            // Title text for the registration screen
             Text(
                 text = "Register your CsBe Account",
                 style = TextStyle(
@@ -54,13 +62,18 @@ fun RegisterScreen(
                     color = Color(0xFF1E1E1E),
                 )
             )
+
+            // Container for the registration form
             Box(modifier = Modifier.width(1000.dp)) {
                 Column(
                     modifier = Modifier.fillMaxWidth(),
                     verticalArrangement = Arrangement.Top,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
+                    // Spacing between the title and the first input field
                     Spacer(modifier = Modifier.height(30.dp))
+
+                    // Input field for First Name
                     Text(
                         text = "Firstname",
                         modifier = Modifier.align(Alignment.Start),
@@ -74,7 +87,7 @@ fun RegisterScreen(
                     )
                     TextField(
                         value = firstName,
-                        onValueChange = { newFirstName -> firstName = newFirstName },
+                        onValueChange = { newFirstName -> firstName = newFirstName.replace("\\s".toRegex(), "") },
                         label = {
                             Text(
                                 text = "Your first Name",
@@ -90,6 +103,7 @@ fun RegisterScreen(
                             .fillMaxWidth()
                     )
 
+                    // Input field for Last Name
                     Spacer(modifier = Modifier.height(20.dp))
                     Text(
                         text = "Lastname",
@@ -104,7 +118,7 @@ fun RegisterScreen(
                     )
                     TextField(
                         value = lastName,
-                        onValueChange = { newLastName -> lastName = newLastName },
+                        onValueChange = { newLastName -> lastName = newLastName.replace("\\s".toRegex(), "") },
                         label = {
                             Text(
                                 text = "Your last Name",
@@ -119,6 +133,8 @@ fun RegisterScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                     )
+
+                    // Gender selection dropdown
                     Spacer(modifier = Modifier.height(20.dp))
                     Text(
                         text = "Gender",
@@ -131,7 +147,6 @@ fun RegisterScreen(
                             color = Color(0xFF1E1E1E),
                         )
                     )
-                    // Row to hold text and dropdown menu for semester selection
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
@@ -161,7 +176,6 @@ fun RegisterScreen(
                                 Icon(Icons.Outlined.ArrowDropDown, contentDescription = "dropdown Gender")
                             }
                         }
-                        // Dropdown menu with list of semesters
                         DropdownMenu(
                             expanded = expanded,
                             onDismissRequest = { expanded = false },
@@ -180,6 +194,7 @@ fun RegisterScreen(
                         }
                     }
 
+                    // Birth date input field
                     Spacer(modifier = Modifier.height(20.dp))
                     Text(
                         text = "Birthdate",
@@ -209,6 +224,8 @@ fun RegisterScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                     )
+
+                    // Apprenticeship selection dropdown
                     Spacer(modifier = Modifier.height(20.dp))
                     Text(
                         text = "Your Appreciate",
@@ -221,7 +238,6 @@ fun RegisterScreen(
                             color = Color(0xFF1E1E1E),
                         )
                     )
-                    // Row to hold text and dropdown menu for semester selection
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
@@ -251,11 +267,10 @@ fun RegisterScreen(
                                 Icon(Icons.Outlined.ArrowDropDown, contentDescription = "dropdown Appreciate")
                             }
                         }
-                        // Dropdown menu with list of semesters
                         DropdownMenu(
                             expanded = expandedApreanci,
                             onDismissRequest = { expandedApreanci = false },
-                            offset = DpOffset(x = 800.dp, y = 0.dp)  // Adjust the offset to position the menu correctly
+                            offset = DpOffset(x = 800.dp, y = 0.dp)
                         ) {
                             val apreanciList =
                                 listOf("Informatiker 4 Jahre", "Informatiker 3 Jahre", "Mediamatiker", "10. Schuljahr")
@@ -270,7 +285,7 @@ fun RegisterScreen(
                         }
                     }
 
-
+                    // Username display field
                     Spacer(modifier = Modifier.height(20.dp))
                     Text(
                         text = "Username",
@@ -289,7 +304,6 @@ fun RegisterScreen(
                         onValueChange = { newFirstName -> firstName = newFirstName },
                         label = {
                             Text(
-
                                 text = userName ,
                                 style = TextStyle(
                                     fontSize = 18.sp,
@@ -302,8 +316,9 @@ fun RegisterScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                     )
-                    Spacer(modifier = Modifier.height(20.dp))
 
+                    // Password input field
+                    Spacer(modifier = Modifier.height(20.dp))
                     Text(
                         text = "School Password",
                         modifier = Modifier.align(Alignment.Start),
@@ -316,8 +331,8 @@ fun RegisterScreen(
                         )
                     )
                     TextField(
-                        value = lastName,
-                        onValueChange = { newLastName -> lastName = newLastName },
+                        value = password,
+                        onValueChange = { newPassword -> password = newPassword },
                         label = {
                             Text(
                                 text = "Your Password",
@@ -332,6 +347,8 @@ fun RegisterScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                     )
+
+                    // Sign Up button
                     Spacer(modifier = Modifier.height(30.dp))
                     Button(
                         modifier = Modifier
@@ -339,15 +356,26 @@ fun RegisterScreen(
                             .height(80.dp),
                         colors = ButtonDefaults.buttonColors(Color(0xFFE50010)),
                         onClick = {
-                            /*
-                            if (isValidLogin(email, password)) {
-                                println("Login erfolgreich!")
-                                navController.navigate(Screen.HomeScreen.name)
+                            // Birthdate validation and navigation logic
+                            val parts = birthDate.split(".")
+                            if (parts.size == 3) {
+                                val day = parts[0].toIntOrNull()
+                                val month = parts[1].toIntOrNull()
+                                val year = parts[2].toIntOrNull()
+                                if (day != null && month != null && year != null) {
+                                    if (day in 1..31 && month in 1..12 && year in 1910..2023 && birthDate.matches("\\d{2}\\.\\d{2}\\.\\d{4}".toRegex())) {
+                                        navController.navigate(Screen.LoginScreen.name)
+                                    } else {
+                                        showDialog = true
+                                    }
+                                } else {
+                                    showDialog = true
+                                }
                             } else {
-                                println("Ungültige Anmeldedaten!")
-                            }*/
+                                showDialog = true
+                            }
                         }
-                    ) {
+                    ){
                         Text(
                             text = "Sign Up",
                             style = TextStyle(
@@ -359,8 +387,28 @@ fun RegisterScreen(
                         )
                     }
 
+                    // Error dialog for incorrect birthdate format
+                    if (showDialog) {
+                        AlertDialog(
+                            onDismissRequest = {
+                                showDialog = false
+                            },
+                            title = {
+                                Text(text = "Not a valid Birthdate")
+                            },
+                            text = {
+                                Text("Please Enter your Birthdate exact like this Format: DD.MM.YYYY")
+                            },
+                            confirmButton = {
+                                Button(onClick = {
+                                    showDialog = false
+                                }) {
+                                    Text("OK")
+                                }
+                            }
+                        )
+                    }
                 }
-
             }
         }
     }
